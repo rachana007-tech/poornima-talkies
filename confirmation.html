@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Confirmed</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to right, #08142e, #0b1e45);
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .confirmation-box {
+      background: rgba(255,255,255,0.08);
+      padding: 40px;
+      border-radius: 20px;
+      width: 500px;
+      text-align: center;
+      box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+      color: gold;
+      margin-bottom: 25px;
+    }
+
+    .details {
+      text-align: left;
+      margin-top: 25px;
+      line-height: 2;
+      font-size: 18px;
+    }
+
+    .details span {
+      color: #f4c542;
+    }
+
+    button {
+      margin-top: 30px;
+      background: gold;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #ffd700;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="confirmation-box">
+
+  <h1>🎉 Booking Confirmed</h1>
+
+  <div class="details">
+
+    <p><strong>Movie:</strong> <span id="movie"></span></p>
+
+    <p><strong>Date:</strong> <span id="date"></span></p>
+
+    <p><strong>Show Time:</strong> <span id="time"></span></p>
+
+    <p><strong>Seats:</strong> <span id="seats"></span></p>
+
+    <p><strong>Phone:</strong> <span id="phone"></span></p>
+
+    <p><strong>Booking ID:</strong> <span id="bookingId"></span></p>
+
+  </div>
+
+  <button onclick="goHome()">Back To Home</button>
+
+</div>
+
+<script>
+
+const movie = localStorage.getItem("selectedMovie");
+const time = localStorage.getItem("selectedTime");
+const seats = localStorage.getItem("selectedSeats");
+const phone = localStorage.getItem("userPhone");
+
+let date = localStorage.getItem("selectedDate");
+
+if(date.includes("T")){
+    date = date.split("T")[0];
+}
+
+document.getElementById("movie").innerText = movie;
+document.getElementById("time").innerText = time;
+document.getElementById("date").innerText = date;
+document.getElementById("seats").innerText = seats;
+document.getElementById("phone").innerText = phone;
+
+const bookingId = "PT" + Math.floor(Math.random() * 100000);
+
+document.getElementById("bookingId").innerText = bookingId;
+
+function goHome() {
+    window.location.href = "index.html";
+}
+
+</script>
+
+</body>
+</html>

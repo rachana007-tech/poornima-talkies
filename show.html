@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Show Time</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(to right, #000428, #004e92);
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 30px;
+            font-size: 50px;
+        }
+
+        .movie-container {
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .movie-card {
+            background: rgba(10, 20, 70, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .movie-details {
+            margin-top: 20px;
+        }
+
+        .movie-details h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .movie-details p {
+            margin: 10px 0;
+            color: #ddd;
+            font-size: 18px;
+        }
+
+        .show-btn {
+            margin-top: 15px;
+            background: gold;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .show-btn:hover {
+            background: #ffd700;
+        }
+        .back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #f5c542;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.back-btn:hover {
+  background: #ffd60a;
+}
+    </style>
+</head>
+
+<body>
+      <button class="back-btn" onclick="goBack()">← Back</button>
+
+<h1>Select Show Time</h1>
+
+<div id="movieList" class="movie-container"></div>
+
+<script>
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'long' });
+    const year = date.getFullYear();
+
+    return `${day} ${month} ${year}`;
+}
+
+async function loadMovies() {
+    const response = await fetch("http://localhost:5000/movies");
+    const movies = await response.json();
+
+    const movieList = document.getElementById("movieList");
+
+    movieList.innerHTML = "";
+
+    movies.forEach(movie => {
+        movieList.innerHTML += `
+            <div class="movie-card">
+                <img src="${movie.poster_url}" alt="Movie Poster">
+
+                <div class="movie-details">
+                    <h2>${movie.movie_name}</h2>
+
+                    <p>${movie.genre} • ${movie.duration} • ${movie.language}</p>
+
+                    <p>🕒 ${movie.show_time}</p>
+
+                    <p>📅 ${formatDate(movie.show_date)}</p>
+
+                    <p>📍 ${movie.theatre_name}</p>
+
+                    <button class="show-btn" onclick="goToSeats('${movie.movie_name}', '${movie.show_date}', '${movie.show_time}')">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+function goToSeats(movieName, showDate, showTime) {
+    localStorage.setItem("selectedMovie", movieName);
+    localStorage.setItem("selectedDate", showDate);
+    localStorage.setItem("selectedTime", showTime);
+
+    window.location.href = "seats.html";
+}
+
+loadMovies();
+
+
+
+
+ 
+  function goBack() {
+    window.location.href = "index.html";
+  }
+
+</script>
+
+</body>
+</html>

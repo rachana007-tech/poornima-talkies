@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+      <button class="back-btn" onclick="goBack()">← Back</button>
+
+<div class="container">
+
+    <h1>🎬 Theatre Admin Dashboard</h1>
+
+    <div class="form-box">
+
+        <input type="text" id="movieName" placeholder="Movie Name">
+
+        <input type="text" id="genre" placeholder="Genre">
+
+        <input type="text" id="duration" placeholder="Duration">
+
+        <input type="text" id="language" placeholder="Language">
+
+        <input type="text" id="timing" placeholder="Show Time">
+
+        <input type="date" id="showDate">
+
+        <input type="text" id="theatre" placeholder="Theatre Name">
+
+        <input type="text" id="poster" placeholder="Poster Image Path">
+
+        <button onclick="addMovie()">Add Movie</button>
+
+    </div>
+
+    <h2>Available Movies</h2>
+
+    <div id="movieList" class="movie-list"></div>
+
+    <h2>Booked Seats</h2>
+
+    <div id="bookingList" class="movie-list"></div>
+
+</div>
+
+<script src="admin.js"></script>
+
+<script>
+  function goBack() {
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
