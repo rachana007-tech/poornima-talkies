@@ -19,7 +19,7 @@ async function addMovie() {
     const poster_url = document.getElementById("poster").value;
     const show_date = document.getElementById("showDate").value;
 
-    const response = await fetch("http://localhost:5000/add-movie", {
+    const response = await fetch("https://poornima-talkies-backend.onrender.com/add-movie", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -56,7 +56,7 @@ async function addMovie() {
 
 async function loadMovies() {
 
-    const response = await fetch("http://localhost:5000/movies");
+    const response = await fetch("https://poornima-talkies-backend.onrender.com/movies");
     const movies = await response.json();
 
     const movieList = document.getElementById("movieList");
@@ -89,7 +89,7 @@ async function loadMovies() {
 
 async function deleteMovie(id) {
 
-    await fetch(`http://localhost:5000/delete-movie/${id}`, {
+    await fetch(`https://poornima-talkies-backend.onrender.com/delete-movie/${id}`, {
         method: "DELETE"
     });
 
@@ -98,7 +98,7 @@ async function deleteMovie(id) {
 
 async function loadBookings() {
 
-    const response = await fetch("http://localhost:5000/bookings");
+    const response = await fetch("https://poornima-talkies-backend.onrender.com/bookings");
 
     const bookings = await response.json();
 
@@ -137,7 +137,7 @@ async function loadBookings() {
 
 async function deleteBooking(id) {
 
-    await fetch(`http://localhost:5000/delete-booking/${id}`, {
+    await fetch(`https://poornima-talkies-backend.onrender.com/delete-booking/${id}`, {
         method: "DELETE"
     });
 

@@ -114,7 +114,7 @@ function formatDate(dateString) {
 }
 
 async function loadMovies() {
-    const response = await fetch("http://localhost:5000/movies");
+    const response = await fetch("https://poornima-talkies-backend.onrender.com/movies");
     const movies = await response.json();
 
     const movieList = document.getElementById("movieList");
