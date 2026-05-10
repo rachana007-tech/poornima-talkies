@@ -213,6 +213,22 @@
 
   <div class="movie-container" id="movieList">
   </div>
+  <button onclick="wakeServer()">Wake Server</button>
+  <script>
+async function wakeServer() {
+
+  try {
+
+    await fetch("https://poornima-talkies-backend.onrender.com/movies");
+
+    alert("Server Ready ✅");
+
+  } catch(error) {
+
+    alert("Server still waking up...");
+  }
+}
+</script>
 
   <script>
     async function loadMovies() {
